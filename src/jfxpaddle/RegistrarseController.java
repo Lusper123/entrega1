@@ -98,8 +98,7 @@ public class RegistrarseController implements Initializable {
                 fxLog.textProperty().setValue(s);
             }
         });
-        // TODO
-    }    
+    }
 
    public static RegistrarseController init(Modality modality, Stage owner) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(RegistrarseController.class.getResource("Registrarse.fxml"));

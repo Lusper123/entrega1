@@ -1,9 +1,12 @@
 package jfxpaddle;
+
 import entrega.pkg1.*;
 import DBAcess.ClubDBAccess;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+
 import javafx.beans.binding.Bindings;
 import javafx.beans.binding.BooleanBinding;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -31,7 +34,7 @@ import model.Member;
  */
 public class NuevoPerfilController implements Initializable {
     ClubDBAccess clubDBAcess;
-    
+
     @FXML
     private Button fxCreo;
     @FXML
@@ -39,7 +42,7 @@ public class NuevoPerfilController implements Initializable {
     @FXML
     private TableView<Member> tableView;
     @FXML
-    private TableColumn<Member,String> username;
+    private TableColumn<Member, String> username;
     @FXML
     private TableColumn<Member, String> name;
     @FXML
@@ -48,27 +51,23 @@ public class NuevoPerfilController implements Initializable {
     /**
      * Initializes the controller class.
      */
-    
-    
+
+
     ObservableList<Member> observableMember;
-   
-    
+
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         clubDBAcess = ClubDBAccess.getSingletonClubDBAccess();
-        clubDBAcess.getMembers().add(new Member("Monica","Villacorta","963443576","movilri","pass123","","",null));
         //inicializamos la tabla principal
         observableMember = FXCollections.observableList(clubDBAcess.getMembers());
         //que tiene cada columna
-        username.setCellValueFactory(e-> new SimpleStringProperty((String)e.getValue().getLogin()));
-        name.setCellValueFactory(e-> new SimpleStringProperty((String)e.getValue().getName()));
-        apellidos.setCellValueFactory(e-> new SimpleStringProperty((String)e.getValue().getSurname()));
-        
+        username.setCellValueFactory(e -> new SimpleStringProperty(e.getValue().getLogin()));
+        name.setCellValueFactory(e -> new SimpleStringProperty(e.getValue().getName()));
+        apellidos.setCellValueFactory(e -> new SimpleStringProperty(e.getValue().getSurname()));
+
         tableView.setItems(observableMember);
-       
-      
-       
-    }    
+    }
 
     @FXML
     private void creoPerfil(ActionEvent event) throws IOException {
@@ -77,8 +76,10 @@ public class NuevoPerfilController implements Initializable {
         Member newPerson = pvc.showAndWait();
         if (newPerson != null) {
             observableMember.add(newPerson);
-            
         }
+
+        clubDBAcess.getMembers().add(new Member("Monica", "Villacorta", "963443576", "admin", "admin", "", "", null));
+        clubDBAcess.saveDB();
          /*FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Registrarse.fxml"));
             Parent root1 = fxmlLoader.load(); 
             RegistrarseController controlador = fxmlLoader.getController();
@@ -94,24 +95,20 @@ public class NuevoPerfilController implements Initializable {
     }
 
     @FXML
-    private void miPerfil(ActionEvent event) 
-        
-        throws IOException {
+    private void miPerfil(ActionEvent event) throws IOException {
         final Stage currentStageVer = (Stage) tableView.getScene().getWindow();
-        RegistrarseController controller =  RegistrarseController.init(Modality.APPLICATION_MODAL, currentStageVer);
+        RegistrarseController controller = RegistrarseController.init(Modality.APPLICATION_MODAL, currentStageVer);
         Member selectedPaciente = tableView.getSelectionModel().getSelectedItem();
-       
+
         controller.showAndWait(selectedPaciente);
-        
+
         tableView.refresh();
     }
-    
-
 
 
     @FXML
     private void eliminaCliente(ActionEvent event) {
         observableMember.removeAll(tableView.getSelectionModel().getSelectedItems());
     }
-    
+
 }

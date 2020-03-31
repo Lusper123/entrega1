@@ -16,18 +16,13 @@ import javafx.stage.Stage;
  * @author Monica
  */
 public class JFXPaddle extends Application {
-    
+
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("InicioApp.fxml"));
-        
-        Scene scene = new Scene(root);
-        
-        stage.setScene(scene);
-        stage.setTitle("Club");
-        stage.setResizable(false);
-        
-        stage.show();
+        Display.setStage(stage);
+        Display.showWindow(getClass(), "InicioApp.fxml");
+        Display.setTitle("Club");
+        Display.getStage().setResizable(false);
     }
 
     /**
