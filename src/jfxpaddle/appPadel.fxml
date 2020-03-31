@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<SplitPane dividerPositions="0.1884422110552764" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="526.0" prefWidth="831.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="jfxpaddle.AppPadelController">
+  <items>
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+         <children>
+            <HBox layoutY="-2.0" prefHeight="100.0" prefWidth="829.0">
+               <children>
+                  <ImageView fitHeight="100.0" fitWidth="105.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../imag/logo.png" />
+                     </image>
+                  </ImageView>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Club de padel FX">
+                     <font>
+                        <Font name="SimSun-ExtB" size="36.0" />
+                     </font>
+                  </Text>
+               </children>
+            </HBox>
+         </children></AnchorPane>
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+         <children>
+            <VBox layoutY="1.0" prefHeight="422.0" prefWidth="829.0">
+               <children>
+                  <MenuBar>
+                    <menus>
+                      <Menu mnemonicParsing="false" text="Inicio">
+                        <items>
+                          <MenuItem mnemonicParsing="false" onAction="#cierraApp" text="Salir" />
+                        </items>
+                      </Menu>
+                      <Menu mnemonicParsing="false" text="Reservas">
+                        <items>
+                          <MenuItem fx:id="fxMiBook" mnemonicParsing="false" onAction="#myBookings" text="Mis reservas" />
+                              <MenuItem fx:id="fxList" mnemonicParsing="false" onAction="#muestraBookings" text="Reservar" />
+                        </items>
+                      </Menu>
+                      <Menu mnemonicParsing="false" text="Ayuda">
+                        <items>
+                          <MenuItem mnemonicParsing="false" text="About" />
+                        </items>
+                      </Menu>
+                    </menus>
+                  </MenuBar>
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <ImageView fitHeight="150.0" fitWidth="401.0" pickOnBounds="true">
+                           <image>
+                              <Image url="@../imag/pista.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="150.0" fitWidth="428.0" pickOnBounds="true">
+                           <image>
+                              <Image url="@../imag/jugadores.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </HBox>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Contacto:" wrappingWidth="58.13671875">
+                     <font>
+                        <Font name="System Bold Italic" size="12.0" />
+                     </font>
+                  </Text>
+                  <TextArea editable="false" prefHeight="156.0" prefWidth="829.0" text="Intagram: @pdlFX&#10;Twitter: @padelPadel&#10;&#10;Teléfono: 963 414 579&#10;&#10;&#10;" wrapText="true" />
+               </children>
+            </VBox>
+         </children></AnchorPane>
+  </items>
+</SplitPane>
