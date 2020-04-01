@@ -55,7 +55,7 @@ public class Ficha_reservaController implements Initializable {
         ObservableList<String> details = FXCollections.observableArrayList(list);
         horario.setCellValueFactory(data -> new SimpleStringProperty(data.getValue()));
         table.setItems(details);
-        table.getColumns().addAll(details);
+        table.getColumns().addAll((TableColumn<String, ?>) details);
     }    
 
     @FXML
