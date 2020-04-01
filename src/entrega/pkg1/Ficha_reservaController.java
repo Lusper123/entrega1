@@ -39,6 +39,7 @@ public class Ficha_reservaController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         Display.disableResizable();
+
         Collection<String> list = new ArrayList<>();
         list.add("9:00 - 10:30");
         list.add("10:30 - 12:00");
@@ -49,14 +50,12 @@ public class Ficha_reservaController implements Initializable {
         list.add("16:30 - 18:00");
         list.add("18:00 - 19:30");
         list.add("19:30 - 21:00");
-        
-        
-        
+
         ObservableList<String> details = FXCollections.observableArrayList(list);
+        table.getItems().addAll(list);
         horario.setCellValueFactory(data -> new SimpleStringProperty(data.getValue()));
         table.setItems(details);
-        table.getColumns().addAll((TableColumn<String, ?>) details);
-    }    
+    }
 
     @FXML
     private void boton_reserva(ActionEvent event) {
