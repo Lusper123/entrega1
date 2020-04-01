@@ -27,7 +27,7 @@ public class Test {
         LocalTime time = LocalTime.of(20, 11, 12);
         LocalDate date = LocalDate.of(20, 11, 15);
         Court court = new Court("3");
-        Member member = new Member("juani", "w", "3424", "ffs", "gfs", "23434234", null, null);
+        Member member = new Member("lusper", "w", "3424", "ffs", "gfs", "23434234", null, null);
         LocalDateTime dateTime2 = LocalDateTime.of(LocalDate.MIN, LocalTime.MIN);
         LocalTime time2 = LocalTime.of(10, 43, 12);
         LocalDate date2 = LocalDate.of(20, 11, 15);

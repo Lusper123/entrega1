@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package jfxpaddle;
-import entrega.pkg1.*;
 import entrega.pkg1.Display;
 import entrega.pkg1.MainController;
 import java.io.IOException;
@@ -30,9 +29,11 @@ public class AppPadelController implements Initializable {
     @FXML
     private MenuItem fxMiBook;
     @FXML
-    private MenuItem fxBooking;
-    @FXML
     private MenuItem fxList;
+    @FXML
+    private MenuItem closeButton;
+    @FXML
+    private MenuItem closeButton1;
 
     /**
      * Initializes the controller class.
@@ -48,47 +49,16 @@ public class AppPadelController implements Initializable {
     }
 
     @FXML
-    private void myBookings(ActionEvent event) {
-        try{
-             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/vista/Main.fxml"));
-            Parent root1 = fxmlLoader.load();
-            MainController controlador = fxmlLoader.getController();
-            Scene scene = new Scene(root1);
-            Stage stage = new Stage();
-            stage.initModality(Modality.APPLICATION_MODAL);
-            stage.setTitle("Lista de reservas del club");
-            stage.setScene(scene);
-            stage.setResizable(false);
-            
-            stage.showAndWait();
-            
-        }catch(IOException e){
-            
-        }
+    private void myBookings(ActionEvent event) throws IOException {
+         Display.setView(getClass(), "/vista/MisReservas.fxml");
+        Display.setTitle("Mis reservas");
     }
 
-    @FXML
-    private void booking(ActionEvent event) {
-    }
 
     @FXML
-    private void muestraBookings(ActionEvent event) {
-        try{
-             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("reservas.fxml"));
-            Parent root1 = fxmlLoader.load();
-            ReservasController controlador = fxmlLoader.getController();
-            Scene scene = new Scene(root1);
-            Stage stage = new Stage();
-            stage.initModality(Modality.APPLICATION_MODAL);
-            stage.setTitle("Lista de reservas del club");
-            stage.setScene(scene);
-            stage.setResizable(false);
-            
-            stage.showAndWait();
-            
-        }catch(IOException e){
-            
-        }
+    private void muestraBookings(ActionEvent event)throws IOException {
+          Display.setView(getClass(), "/vista/Reservar.fxml");
+          Display.setTitle("Reservar pista");
     }
     
 }

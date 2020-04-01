@@ -13,7 +13,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<SplitPane dividerPositions="0.1884422110552764" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="526.0" prefWidth="831.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="jfxpaddle.AppPadelController">
+<SplitPane dividerPositions="0.1884422110552764" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="526.0" prefWidth="831.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="jfxpaddle.AppPadelController">
   <items>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
          <children>
@@ -40,7 +40,8 @@
                     <menus>
                       <Menu mnemonicParsing="false" text="Inicio">
                         <items>
-                          <MenuItem mnemonicParsing="false" onAction="#cierraApp" text="Salir" />
+                          <MenuItem fx:id="closeButton" mnemonicParsing="false" text="Volver a inicio" />
+                              <MenuItem fx:id="closeButton1" mnemonicParsing="false" onAction="#cierraApp" text="Salir" />
                         </items>
                       </Menu>
                       <Menu mnemonicParsing="false" text="Reservas">
