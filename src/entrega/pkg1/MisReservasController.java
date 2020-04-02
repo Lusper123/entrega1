@@ -87,7 +87,7 @@ public class MisReservasController  implements Initializable  {
     
     @FXML
     private void reservar(ActionEvent event) throws IOException {
-        Display.setView(getClass(), "/vista/    Reservar.fxml");
+        Display.setView(getClass(), "/vista/Reservar.fxml");
         Display.setTitle("Reservar pista");
     }
 
@@ -110,8 +110,8 @@ public class MisReservasController  implements Initializable  {
         stage.showAndWait();
         
         if (controlador.getAceptar()) {
-          if (clubDBAccess.getForDayBookings(tableView.getSelectionModel().getSelectedItems()))
- {
+           if (clubDBAccess.getForDayBookings(tableView.getSelectionModel().getSelectedItems()))
+{
             {
                 data.removeAll(tableView.getSelectionModel().getSelectedItems());
                 clubDBAccess.saveDB();
