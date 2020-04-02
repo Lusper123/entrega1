@@ -9,6 +9,7 @@ import DBAcess.ClubDBAccess;
 import jfxpaddle.AutenticarseController;
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -54,15 +55,12 @@ public class MisReservasController  implements Initializable  {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         clubDBAccess = ClubDBAccess.getSingletonClubDBAccess();
-        
-        clubDBAccess.getUserBookings(Auth.user().getLogin());
-        
-        cancelar.disableProperty()
+         cancelar.disableProperty()
                 .bind(tableView.getSelectionModel().selectedItemProperty().isNull());
 
-        clubDBAccess = ClubDBAccess.getSingletonClubDBAccess();
-        tableView.setItems(data);
-                            
+        List<Booking> bookings = clubDBAccess.getUserBookings(Auth.user().getLogin());
+        tableView.setItems((ObservableList<Booking>) bookings); 
+
         TableColumn<Booking, Court> colPista = new TableColumn<>("Número de la pista");
         TableColumn<Booking, String> hora = new TableColumn<>("Dia de la reserva ");
         hora.setCellValueFactory(new PropertyValueFactory("madeForDay"));
@@ -78,21 +76,18 @@ public class MisReservasController  implements Initializable  {
                 else
                     setText(item.getName());
             }
-           
         });       
-        colPista.setPrefWidth(130.0);
-        hora.setPrefWidth(150.0);
-        dia.setPrefWidth(130.0);
-        colPista.setResizable(false);
-        hora.setResizable(false);
-        dia.setResizable(false);
+         colPista.setPrefWidth(130.0);colPista.setResizable(false);
+        hora.setPrefWidth(150.0);hora.setResizable(false);
+        dia.setPrefWidth(130.0);dia.setResizable(false);
+       
         tableView.getColumns().addAll(colPista, hora,dia);
     }
 
     
     @FXML
     private void reservar(ActionEvent event) throws IOException {
-        Display.setView(getClass(), "/vista/Reservar.fxml");
+        Display.setView(getClass(), "/vista/    Reservar.fxml");
         Display.setTitle("Reservar pista");
     }
 
@@ -115,7 +110,8 @@ public class MisReservasController  implements Initializable  {
         stage.showAndWait();
         
         if (controlador.getAceptar()) {
-            {
+          if (clubDBAccess.getForDayBookings(tableView.getSelectionModel().getSelectedItems()))
+ {
             {
                 data.removeAll(tableView.getSelectionModel().getSelectedItems());
                 clubDBAccess.saveDB();

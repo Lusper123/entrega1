@@ -5,16 +5,15 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="258.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="entrega.pkg1.Ficha_reservaController">
+<AnchorPane id="AnchorPane" prefHeight="301.0" prefWidth="573.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="entrega.pkg1.Ficha_reservaController">
    <children>
-      <TableView fx:id="table" layoutX="86.0" layoutY="87.0" prefHeight="240.0" prefWidth="600.0" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <TableView fx:id="table" layoutX="86.0" layoutY="87.0" prefHeight="245.0" prefWidth="572.0" AnchorPane.bottomAnchor="56.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <columns>
           <TableColumn fx:id="horario" prefWidth="210.0" text="Horario" />
-            <TableColumn prefWidth="179.0" text="Estado" />
-            <TableColumn prefWidth="204.0" text="Usuario de la reserva" />
+            <TableColumn fx:id="estado" prefWidth="179.0" text="Estado" />
+            <TableColumn fx:id="usuario" prefWidth="204.0" text="Usuario de la reserva" />
         </columns>
       </TableView>
-      <Button fx:id="reservafxID" layoutX="191.0" layoutY="240.0" mnemonicParsing="false" onAction="#boton_reserva" text="Reservar fecha elemento seleccionado" />
+      <Button fx:id="reservafxID" layoutX="178.0" layoutY="262.0" mnemonicParsing="false" onAction="#boton_reserva" text="Reservar fecha elemento seleccionado" />
    </children>
 </AnchorPane>

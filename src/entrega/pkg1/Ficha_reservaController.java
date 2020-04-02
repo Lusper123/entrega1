@@ -32,6 +32,10 @@ public class Ficha_reservaController implements Initializable {
     private Button reservafxID;
     @FXML
     private TableView<String> table;
+    @FXML
+    private TableColumn<?, ?> estado;
+    @FXML
+    private TableColumn<?, ?> usuario;
 
     /**
      * Initializes the controller class.
@@ -39,7 +43,10 @@ public class Ficha_reservaController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         Display.disableResizable();
-
+        horario.setPrefWidth(190.0);horario.setResizable(false);
+        estado.setPrefWidth(190.0); estado.setResizable(false);
+        usuario.setPrefWidth(190.0);usuario.setResizable(false);
+        
         Collection<String> list = new ArrayList<>();
         list.add("9:00 - 10:30");
         list.add("10:30 - 12:00");
@@ -50,7 +57,7 @@ public class Ficha_reservaController implements Initializable {
         list.add("16:30 - 18:00");
         list.add("18:00 - 19:30");
         list.add("19:30 - 21:00");
-
+            
         ObservableList<String> details = FXCollections.observableArrayList(list);
         table.getItems().addAll(list);
         horario.setCellValueFactory(data -> new SimpleStringProperty(data.getValue()));
@@ -59,6 +66,7 @@ public class Ficha_reservaController implements Initializable {
 
     @FXML
     private void boton_reserva(ActionEvent event) {
+        
     }
     
 }

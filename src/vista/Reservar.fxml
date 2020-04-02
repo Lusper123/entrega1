@@ -60,19 +60,19 @@
             <Image url="@../icons/pista1.jpg" />
          </image>
       </ImageView>
-      <ImageView fx:id="pista12" fitHeight="150.0" fitWidth="200.0" layoutX="524.0" layoutY="176.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="pista12" fitHeight="150.0" fitWidth="200.0" layoutX="536.0" layoutY="176.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../icons/pista1.jpg" />
          </image>
       </ImageView>
-      <ImageView fx:id="pista13" fitHeight="150.0" fitWidth="200.0" layoutX="524.0" layoutY="306.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="pista13" fitHeight="150.0" fitWidth="200.0" layoutX="536.0" layoutY="306.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../icons/pista1.jpg" />
          </image>
       </ImageView>
-      <Button fx:id="boton2" layoutX="524.0" layoutY="176.0" mnemonicParsing="false" onAction="#boton1" prefHeight="101.0" prefWidth="200.0" text="pista 2" />
+      <Button fx:id="boton2" layoutX="536.0" layoutY="176.0" mnemonicParsing="false" onAction="#boton1" prefHeight="101.0" prefWidth="200.0" text="pista 2" />
       <Button fx:id="boton3" layoutX="66.0" layoutY="306.0" mnemonicParsing="false" onAction="#boton1" prefHeight="101.0" prefWidth="200.0" text="pista 3" />
-      <Button fx:id="boton4" layoutX="524.0" layoutY="306.0" mnemonicParsing="false" onAction="#boton1" prefHeight="101.0" prefWidth="200.0" text="pista 4" />
-      <DatePicker fx:id="dpBookingDay" layoutX="334.0" layoutY="144.0" onAction="#datePicker" />
+      <Button fx:id="boton4" layoutX="536.0" layoutY="306.0" mnemonicParsing="false" onAction="#boton1" prefHeight="101.0" prefWidth="200.0" text="pista 4" />
+      <DatePicker fx:id="dpBookingDay" layoutX="335.0" layoutY="151.0" onAction="#datePicker" />
    </children>
 </AnchorPane>
