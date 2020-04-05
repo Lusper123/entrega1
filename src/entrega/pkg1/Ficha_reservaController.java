@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 package entrega.pkg1;
+import DBAcess.ClubDBAccess;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -14,10 +16,17 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import model.Booking;
+import model.Court;
 
 /**
  * FXML Controller class
@@ -33,15 +42,18 @@ public class Ficha_reservaController implements Initializable {
     @FXML
     private TableView<String> table;
     @FXML
-    private TableColumn<?, ?> estado;
+    private TableColumn<String, String> estado;
     @FXML
-    private TableColumn<?, ?> usuario;
+    private TableColumn<String, String> usuario;
+    
+    ClubDBAccess clubDBAccess;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        clubDBAccess = ClubDBAccess.getSingletonClubDBAccess();
         Display.disableResizable();
         horario.setPrefWidth(190.0);horario.setResizable(false);
         estado.setPrefWidth(190.0); estado.setResizable(false);
@@ -65,8 +77,53 @@ public class Ficha_reservaController implements Initializable {
     }
 
     @FXML
-    private void boton_reserva(ActionEvent event) {
+    private void boton_reserva(ActionEvent event) throws IOException {
+        System.out.println(this);
+
+        FXMLLoader miCargador = new FXMLLoader(getClass().getResource("/vista/confirmar.fxml"));
+        Parent root = miCargador.load();
+
+        ConfirmarController controlador = miCargador.<ConfirmarController>getController();
+        controlador.initPersona();
+
+        Scene scene = new Scene(root);
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.setTitle("Confirmar acción");
+
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.showAndWait();
+        
+        if (controlador.getAceptar()) {
+            Booking b = new Booking();
+            if ((Auth.user().checkHasCreditInfo())){ 
+                b.setPaid(Boolean.TRUE);
+            } else {b.setPaid(Boolean.FALSE);}
+            switch (Court) {
+                 case 1: 
+                     Court court1 = new Court("1");
+                       b.setCourt(court1);
+                       break;
+                 case 2:
+                        Court court2 = new Court("2");
+                       b.setCourt(court2);
+                       break;
+                 case 3: 
+                        Court court3 = new Court("3");
+                       b.setCourt(court3);
+                       break;
+                 case 4:
+                      Court court4 = new Court("4");
+                       b.setCourt(court4);
+                       break;
+            }
+                     table.getSelectionModel().getSelectedItems();
+                    clubDBAccess.saveDB();
+        }
+        
         
     }
+    
+    
     
 }

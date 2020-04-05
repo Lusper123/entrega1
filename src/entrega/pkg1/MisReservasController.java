@@ -59,8 +59,7 @@ public class MisReservasController  implements Initializable  {
                 .bind(tableView.getSelectionModel().selectedItemProperty().isNull());
 
         List<Booking> bookings = clubDBAccess.getUserBookings(Auth.user().getLogin());
-        tableView.setItems((ObservableList<Booking>) bookings); 
-
+        
         TableColumn<Booking, Court> colPista = new TableColumn<>("Número de la pista");
         TableColumn<Booking, String> hora = new TableColumn<>("Dia de la reserva ");
         hora.setCellValueFactory(new PropertyValueFactory("madeForDay"));
@@ -110,8 +109,7 @@ public class MisReservasController  implements Initializable  {
         stage.showAndWait();
         
         if (controlador.getAceptar()) {
-           if (clubDBAccess.getForDayBookings(tableView.getSelectionModel().getSelectedItems()))
-{
+           {
             {
                 data.removeAll(tableView.getSelectionModel().getSelectedItems());
                 clubDBAccess.saveDB();

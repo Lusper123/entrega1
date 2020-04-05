@@ -70,4 +70,5 @@ public class Display {
      public static void disableResizable(Stage stage){
          stage.setResizable(false);
      }
+     
 }
