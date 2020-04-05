@@ -29,21 +29,22 @@ import javafx.stage.Stage;
 import model.Booking;
 import model.Court;
 import model.Member;
+
 /**
  * FXML Controller class
  *
  * @author choco
  */
-public class MisReservasController  implements Initializable  {
+public class MisReservasController implements Initializable {
 
     ClubDBAccess clubDBAccess;
     @FXML
     private TableView<Booking> tableView;
 
     private static ObservableList<Booking> data = null;
-    
+
     public static void setData(ObservableList<Booking> observableArrayList) {
-         data = observableArrayList;
+        data = observableArrayList;
     }
     @FXML
     private Button cancelar;
@@ -55,35 +56,38 @@ public class MisReservasController  implements Initializable  {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         clubDBAccess = ClubDBAccess.getSingletonClubDBAccess();
-         cancelar.disableProperty()
+        cancelar.disableProperty()
                 .bind(tableView.getSelectionModel().selectedItemProperty().isNull());
 
         List<Booking> bookings = clubDBAccess.getUserBookings(Auth.user().getLogin());
-        
+
         TableColumn<Booking, Court> colPista = new TableColumn<>("Número de la pista");
         TableColumn<Booking, String> hora = new TableColumn<>("Dia de la reserva ");
         hora.setCellValueFactory(new PropertyValueFactory("madeForDay"));
         TableColumn<Booking, String> dia = new TableColumn<>("Hora inicio");
         dia.setCellValueFactory(new PropertyValueFactory("bookingDate"));
         colPista.setCellValueFactory(new PropertyValueFactory<Booking, Court>("court"));
-        colPista.setCellFactory((TableColumn<Booking, Court> cell) -> new TableCell<Booking,Court>() {
+        colPista.setCellFactory((TableColumn<Booking, Court> cell) -> new TableCell<Booking, Court>() {
             @Override
-            protected void updateItem(Court item, boolean empty){
+            protected void updateItem(Court item, boolean empty) {
                 super.updateItem(item, empty);
-                if(item ==null || empty)
+                if (item == null || empty) {
                     setText(null);
-                else
+                } else {
                     setText(item.getName());
+                }
             }
-        });       
-         colPista.setPrefWidth(130.0);colPista.setResizable(false);
-        hora.setPrefWidth(150.0);hora.setResizable(false);
-        dia.setPrefWidth(130.0);dia.setResizable(false);
-       
-        tableView.getColumns().addAll(colPista, hora,dia);
+        });
+        colPista.setPrefWidth(130.0);
+        colPista.setResizable(false);
+        hora.setPrefWidth(150.0);
+        hora.setResizable(false);
+        dia.setPrefWidth(130.0);
+        dia.setResizable(false);
+
+        tableView.getColumns().addAll(colPista, hora, dia);
     }
 
-    
     @FXML
     private void reservar(ActionEvent event) throws IOException {
         Display.setView(getClass(), "/vista/Reservar.fxml");
@@ -107,13 +111,11 @@ public class MisReservasController  implements Initializable  {
 
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.showAndWait();
-        
+
         if (controlador.getAceptar()) {
-           {
             {
                 data.removeAll(tableView.getSelectionModel().getSelectedItems());
                 clubDBAccess.saveDB();
-            }
             }
         }
     }
@@ -126,8 +128,7 @@ public class MisReservasController  implements Initializable  {
     @FXML
     private void volver(ActionEvent event) throws IOException {
         Display.setView(getClass(), "/jfxpaddle/appPadel.fxml");
-         Display.setTitle("Mis reservas");
+        Display.setTitle("Mis reservas");
     }
-
 
 }

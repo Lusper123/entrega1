@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package entrega.pkg1;
+
 import DBAcess.ClubDBAccess;
 import java.io.IOException;
 import java.net.URL;
@@ -23,6 +24,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.Booking;
@@ -45,7 +47,7 @@ public class Ficha_reservaController implements Initializable {
     private TableColumn<String, String> estado;
     @FXML
     private TableColumn<String, String> usuario;
-    
+
     ClubDBAccess clubDBAccess;
 
     /**
@@ -55,10 +57,13 @@ public class Ficha_reservaController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         clubDBAccess = ClubDBAccess.getSingletonClubDBAccess();
         Display.disableResizable();
-        horario.setPrefWidth(190.0);horario.setResizable(false);
-        estado.setPrefWidth(190.0); estado.setResizable(false);
-        usuario.setPrefWidth(190.0);usuario.setResizable(false);
-        
+        horario.setPrefWidth(190.0);
+        horario.setResizable(false);
+        estado.setPrefWidth(190.0);
+        estado.setResizable(false);
+        usuario.setPrefWidth(190.0);
+        usuario.setResizable(false);
+
         Collection<String> list = new ArrayList<>();
         list.add("9:00 - 10:30");
         list.add("10:30 - 12:00");
@@ -69,11 +74,14 @@ public class Ficha_reservaController implements Initializable {
         list.add("16:30 - 18:00");
         list.add("18:00 - 19:30");
         list.add("19:30 - 21:00");
-            
+
         ObservableList<String> details = FXCollections.observableArrayList(list);
-        table.getItems().addAll(list);
-        horario.setCellValueFactory(data -> new SimpleStringProperty(data.getValue()));
         table.setItems(details);
+        table.getItems().addAll(list);
+        
+        horario.setCellValueFactory(data -> new SimpleStringProperty(data.getValue()));
+        ObservableList<String> estados = FXCollections.observableArrayList("Cosa simple");
+        
     }
 
     @FXML
@@ -93,37 +101,20 @@ public class Ficha_reservaController implements Initializable {
 
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.showAndWait();
-        
+
         if (controlador.getAceptar()) {
             Booking b = new Booking();
-            if ((Auth.user().checkHasCreditInfo())){ 
+            if ((Auth.user().checkHasCreditInfo())) {
                 b.setPaid(Boolean.TRUE);
-            } else {b.setPaid(Boolean.FALSE);}
-            switch (Court) {
-                 case 1: 
-                     Court court1 = new Court("1");
-                       b.setCourt(court1);
-                       break;
-                 case 2:
-                        Court court2 = new Court("2");
-                       b.setCourt(court2);
-                       break;
-                 case 3: 
-                        Court court3 = new Court("3");
-                       b.setCourt(court3);
-                       break;
-                 case 4:
-                      Court court4 = new Court("4");
-                       b.setCourt(court4);
-                       break;
+            } else {
+                b.setPaid(Boolean.FALSE);
             }
-                     table.getSelectionModel().getSelectedItems();
-                    clubDBAccess.saveDB();
+
+            b.setCourt(ActualCourt.get());
+            table.getSelectionModel().getSelectedItems();
+            clubDBAccess.saveDB();
         }
-        
-        
+
     }
-    
-    
-    
+
 }
