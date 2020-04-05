@@ -28,7 +28,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.Booking;
-import model.Court;
+import model.Member;
 
 /**
  * FXML Controller class
@@ -38,15 +38,15 @@ import model.Court;
 public class Ficha_reservaController implements Initializable {
 
     @FXML
-    private TableColumn<String, String> horario;
-    @FXML
     private Button reservafxID;
     @FXML
-    private TableView<String> table;
+    private TableView<HorarioReservas> table;
     @FXML
-    private TableColumn<String, String> estado;
+    private TableColumn<HorarioReservas, String> horario;
     @FXML
-    private TableColumn<String, String> usuario;
+    private TableColumn<HorarioReservas, String> estado;
+    @FXML
+    private TableColumn<HorarioReservas, String> usuario;
 
     ClubDBAccess clubDBAccess;
 
@@ -63,25 +63,30 @@ public class Ficha_reservaController implements Initializable {
         estado.setResizable(false);
         usuario.setPrefWidth(190.0);
         usuario.setResizable(false);
+        List<HorarioReservas> horarios = new ArrayList<>();
+        horarios.add(new HorarioReservas("09:00 - 10:30", new Member()));
+        horarios.add(new HorarioReservas("10:30 - 12:00"));
+        horarios.add(new HorarioReservas("12:00 - 13:30"));
+        horarios.add(new HorarioReservas("13:30 - 15:00"));
+        horarios.add(new HorarioReservas("15:00 - 16:30"));
+        horarios.add(new HorarioReservas("16:30 - 18:00"));
+        horarios.add(new HorarioReservas("16:30 - 18:00"));
+        horarios.add(new HorarioReservas("18:00 - 19:30"));
+        horarios.add(new HorarioReservas("19:30 - 21:00"));
 
-        Collection<String> list = new ArrayList<>();
-        list.add("9:00 - 10:30");
-        list.add("10:30 - 12:00");
-        list.add("12:00 - 13:30");
-        list.add("13:30 - 15:00");
-        list.add("15:00 - 16:30");
-        list.add("16:30 - 18:00");
-        list.add("16:30 - 18:00");
-        list.add("18:00 - 19:30");
-        list.add("19:30 - 21:00");
+        ObservableList<HorarioReservas> list = FXCollections.observableArrayList();
+        list.addAll(horarios);
+        table.setItems(list);
+        horario = new TableColumn<>("Horas");
+        horario.setCellValueFactory(new PropertyValueFactory("hora"));
 
-        ObservableList<String> details = FXCollections.observableArrayList(list);
-        table.setItems(details);
-        table.getItems().addAll(list);
-        
-        horario.setCellValueFactory(data -> new SimpleStringProperty(data.getValue()));
-        ObservableList<String> estados = FXCollections.observableArrayList("Cosa simple");
-        
+        estado = new TableColumn<>("Estado");
+        estado.setCellValueFactory(new PropertyValueFactory("estado"));
+
+        usuario = new TableColumn<>("Usuario");
+        usuario.setCellValueFactory(new PropertyValueFactory("member"));
+
+        table.getColumns().setAll(horario, estado, usuario);
     }
 
     @FXML
