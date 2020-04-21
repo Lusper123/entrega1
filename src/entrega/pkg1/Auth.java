@@ -23,6 +23,7 @@ public class Auth {
 
         if (u == null || u.checkLogin(u.getLogin())) {
             user = u;
+           
         }
 
     }

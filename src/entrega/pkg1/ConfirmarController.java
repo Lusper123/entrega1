@@ -5,8 +5,6 @@
  */
 package entrega.pkg1;
 
-import jfxpaddle.AppPadelController;
-import jfxpaddle.*;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;

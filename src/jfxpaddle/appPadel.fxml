@@ -1,84 +1,165 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.SplitPane?>
-<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<SplitPane dividerPositions="0.1884422110552764" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="526.0" prefWidth="831.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="jfxpaddle.AppPadelController">
-  <items>
-    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="745.0" prefWidth="1076.0" style="-fx-background-color: #b8e6f4;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="jfxpaddle.AppPadelController">
+   <children>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0">
          <children>
-            <HBox layoutY="-2.0" prefHeight="100.0" prefWidth="829.0">
+            <GridPane alignment="CENTER" layoutX="-363.0" prefHeight="68.0" prefWidth="1107.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="20.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
                <children>
-                  <ImageView fitHeight="100.0" fitWidth="105.0" pickOnBounds="true" preserveRatio="true">
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Club de padel FX" GridPane.columnIndex="1" GridPane.halignment="CENTER">
+                     <font>
+                        <Font name="Cooper Black" size="36.0" />
+                     </font>
+                  </Text>
+                  <ImageView fitHeight="100.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="LEFT">
                      <image>
-                        <Image url="@../imag/logo.png" />
+                        <Image url="@../imag/tennis%20(1).png" />
                      </image>
                   </ImageView>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Club de padel FX">
-                     <font>
-                        <Font name="SimSun-ExtB" size="36.0" />
-                     </font>
-                  </Text>
+                  <ImageView fitHeight="100.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="RIGHT">
+                     <image>
+                        <Image url="@../imag/tennis.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </GridPane>
+            <MenuBar layoutX="-224.0" layoutY="114.0" prefHeight="21.0" prefWidth="1076.0" stylesheets="@../cssClass/menuitem.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+              <menus>
+                <Menu mnemonicParsing="false" text="Inicio">
+                  <items>
+                        <MenuItem fx:id="miPerf" mnemonicParsing="false" onAction="#verMiPerfil" text="Mi perfil:">
+                           <graphic>
+                              <ImageView fx:id="imageUser" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+                           </graphic>
+                        </MenuItem>
+                        <MenuItem mnemonicParsing="false" text="Volver al inicio" />
+                        <MenuItem mnemonicParsing="false" onAction="#normasReserva" text="Normativa" />
+                        <MenuItem fx:id="fxCierraSesion" mnemonicParsing="false" onAction="#cerrarSesion" text="Cerrar sesión" />
+                    <MenuItem mnemonicParsing="false" onAction="#cierraApp" text="Salir" />
+                  </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Reservas">
+                  <items>
+                    <MenuItem mnemonicParsing="false" onAction="#myBookings" text="Pistas" />
+                        <MenuItem mnemonicParsing="false" onAction="#myListBooks" text="Mis reservas" />
+                        <MenuItem mnemonicParsing="false" onAction="#reservar" text="Reservar" />
+                  </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Ayuda">
+                  <items>
+                    <MenuItem fx:id="fxHelp" mnemonicParsing="false" onAction="#ayuda" text="About" />
+                  </items>
+                </Menu>
+              </menus>
+            </MenuBar>
+         </children>
+      </AnchorPane>
+      <VBox alignment="CENTER" prefHeight="462.0" prefWidth="1076.0">
+         <children>
+            <HBox alignment="CENTER" prefHeight="391.0" prefWidth="1076.0">
+               <children>
+                  <ImageView fitHeight="264.0" fitWidth="354.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../imag/jugadores.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="169.0" fitWidth="265.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../imag/c700x420.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets bottom="10.0" left="40.0" top="10.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <ImageView fitHeight="158.0" fitWidth="293.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../imag/pista.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets bottom="10.0" left="40.0" top="10.0" />
+                     </HBox.margin>
+                  </ImageView>
                </children>
             </HBox>
-         </children></AnchorPane>
-    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+            <Line endX="949.2929077148438" endY="1.7928931713104248" startX="-100.0" />
+         </children>
+      </VBox>
+      <HBox alignment="CENTER" prefHeight="503.0" prefWidth="1076.0">
          <children>
-            <VBox layoutY="1.0" prefHeight="422.0" prefWidth="829.0">
+            <VBox alignment="CENTER" prefHeight="281.0" prefWidth="1259.0">
                <children>
-                  <MenuBar>
-                    <menus>
-                      <Menu mnemonicParsing="false" text="Inicio">
-                        <items>
-                          <MenuItem fx:id="closeButton" mnemonicParsing="false" text="Volver a inicio" />
-                              <MenuItem fx:id="closeButton1" mnemonicParsing="false" onAction="#cierraApp" text="Salir" />
-                        </items>
-                      </Menu>
-                      <Menu mnemonicParsing="false" text="Reservas">
-                        <items>
-                          <MenuItem fx:id="fxMiBook" mnemonicParsing="false" onAction="#myBookings" text="Mis reservas" />
-                              <MenuItem fx:id="fxList" mnemonicParsing="false" onAction="#muestraBookings" text="Reservar" />
-                        </items>
-                      </Menu>
-                      <Menu mnemonicParsing="false" text="Ayuda">
-                        <items>
-                          <MenuItem mnemonicParsing="false" text="About" />
-                        </items>
-                      </Menu>
-                    </menus>
-                  </MenuBar>
-                  <HBox prefHeight="100.0" prefWidth="200.0">
-                     <children>
-                        <ImageView fitHeight="150.0" fitWidth="401.0" pickOnBounds="true">
-                           <image>
-                              <Image url="@../imag/pista.png" />
-                           </image>
-                        </ImageView>
-                        <ImageView fitHeight="150.0" fitWidth="428.0" pickOnBounds="true">
-                           <image>
-                              <Image url="@../imag/jugadores.png" />
-                           </image>
-                        </ImageView>
-                     </children>
-                  </HBox>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Contacto:" wrappingWidth="58.13671875">
-                     <font>
-                        <Font name="System Bold Italic" size="12.0" />
-                     </font>
-                  </Text>
-                  <TextArea editable="false" prefHeight="156.0" prefWidth="829.0" text="Intagram: @pdlFX&#10;Twitter: @padelPadel&#10;&#10;Teléfono: 963 414 579&#10;&#10;&#10;" wrapText="true" />
+                  <ImageView fitHeight="192.0" fitWidth="391.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../imag/clave-api-google-maps-1-1030x591.jpg" />
+                     </image>
+                  </ImageView>
                </children>
             </VBox>
-         </children></AnchorPane>
-  </items>
-</SplitPane>
+            <VBox alignment="CENTER" prefHeight="226.0" prefWidth="1005.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Contacto :" underline="true">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                  </Text>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="© PADEL FX" />
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../imag/call.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="14.0" layoutY="59.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../imag/gmail.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="14.0" layoutY="100.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../imag/destination.png" />
+                           </image>
+                        </ImageView>
+                        <Text layoutX="42.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Teléfono : 963 444 398" />
+                        <Text layoutX="42.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="E-mail : paddleclub@gmail.com" />
+                        <Text layoutX="45.0" layoutY="115.0" strokeType="OUTSIDE" strokeWidth="0.0" text="C/ Santo Domingo 24" />
+                        <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="14.0" layoutY="146.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../imag/twitter.png" />
+                           </image>
+                        </ImageView>
+                        <Text layoutX="45.0" layoutY="160.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Twitter : @jfxpaddleClub" />
+                        <Label fx:id="status" layoutX="511.0" layoutY="81.0" />
+                     </children>
+                  </AnchorPane>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+   </children>
+</VBox>

@@ -8,8 +8,8 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="JFXPaddle.jar" size="656009" download="eager" />
-    <jar href="lib\ClubDBAccess.jar" size="727913" download="eager" />
+    <jar href="JFXPaddle.jar" size="1718678" download="eager" />
+    <jar href="lib\ClubDBAccess.jar" size="727900" download="eager" />
   </resources>
   <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="JFXPaddle" >
     <param name="requiredFXVersion" value="8.0+"/>

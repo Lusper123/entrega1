@@ -1,58 +1,167 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="535.0" prefWidth="841.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="entrega.pkg1.MisReservasController">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="745.0" prefWidth="1076.0" style="-fx-background-color: #b8e6f4;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vista.MisReservasController">
    <children>
-      <TableView fx:id="tableView" layoutX="63.0" layoutY="265.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="220.0" AnchorPane.rightAnchor="220.0" AnchorPane.topAnchor="170.0">
-        <columns>
-        </columns>
-      </TableView>
-      <Button fx:id="cancelar" layoutX="296.0" layoutY="495.0" mnemonicParsing="false" onAction="#cancelar_reserva" text="Cancelar reserva del elemento seleccionado" />
-      <HBox layoutX="1.0" layoutY="1.0" prefHeight="103.0" prefWidth="832.0">
+      <AnchorPane prefHeight="153.0" prefWidth="1076.0" VBox.vgrow="ALWAYS">
          <children>
-            <ImageView fitHeight="100.0" fitWidth="105.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../imag/logo.png" />
-               </image>
-            </ImageView>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Club de padel FX">
-               <font>
-                  <Font name="SimSun-ExtB" size="36.0" />
-               </font>
-            </Text>
+            <HBox alignment="CENTER" prefHeight="107.0" prefWidth="1076.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+               <children>
+                  <GridPane alignment="CENTER" prefHeight="118.0" prefWidth="1076.0" HBox.hgrow="ALWAYS">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Club de padel FX" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS">
+                           <font>
+                              <Font name="Cooper Black" size="36.0" />
+                           </font>
+                        </Text>
+                        <ImageView fitHeight="100.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS">
+                           <image>
+                              <Image url="@../imag/tennis.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="100.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS">
+                           <image>
+                              <Image url="@../imag/tennis%20(1).png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </GridPane>
+               </children>
+            </HBox>
+            <MenuBar layoutY="110.0" prefHeight="31.0" prefWidth="1076.0" stylesheets="@../cssClass/menuitem.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+              <menus>
+                <Menu mnemonicParsing="false" text="Inicio">
+                  <items>
+                        <MenuItem fx:id="miUser" mnemonicParsing="false" onAction="#miUser" text="Mi perfil:">
+                           <graphic>
+                              <ImageView fx:id="imageUser" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+                           </graphic>
+                        </MenuItem>
+                        <MenuItem fx:id="closeButton" mnemonicParsing="false" onAction="#volver" text="Volver a inicio" />
+                        <MenuItem mnemonicParsing="false" onAction="#normativa" text="Normativa" />
+                        <MenuItem mnemonicParsing="false" onAction="#cierraSesion" text="Cerrar sesión" />
+                    <MenuItem fx:id="closeButton12" mnemonicParsing="false" onAction="#cierraApp" text="Salir" />
+                  </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Reservas">
+                  <items>
+                    <MenuItem mnemonicParsing="false" text="Pistas" />
+                        <MenuItem mnemonicParsing="false" onAction="#misPistas" text="Mis reservas" />
+                        <MenuItem mnemonicParsing="false" onAction="#reservar" text="Reservar" />
+                  </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Ayuda">
+                  <items>
+                    <MenuItem mnemonicParsing="false" text="About" />
+                  </items>
+                </Menu>
+              </menus>
+            </MenuBar>
+         </children>
+      </AnchorPane>
+      <HBox alignment="CENTER" prefHeight="596.0" prefWidth="1076.0">
+         <children>
+            <BorderPane prefHeight="290.0" prefWidth="1076.0">
+               <top>
+                  <HBox alignment="CENTER" prefHeight="85.0" prefWidth="1076.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <Label fx:id="status" />
+                        <Text fx:id="prueba" strokeType="OUTSIDE" strokeWidth="0.0" />
+                     </children>
+                  </HBox>
+               </top>
+               <left>
+                  <GridPane prefHeight="432.0" prefWidth="275.0" BorderPane.alignment="CENTER">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="155.0" minWidth="10.0" prefWidth="131.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="148.0" minWidth="10.0" prefWidth="118.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints maxHeight="209.0" minHeight="10.0" prefHeight="100.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="336.0" minHeight="10.0" prefHeight="332.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <DatePicker fx:id="datePicker" onAction="#hancleFecha">
+                                 <HBox.margin>
+                                    <Insets left="20.0" />
+                                 </HBox.margin>
+                              </DatePicker>
+                           </children>
+                        </HBox>
+                        <Button mnemonicParsing="false" onAction="#reiniciarDate" style="-fx-background-color: #c9831d;" stylesheets="@../cssClass/botones.css" text="Resetear" GridPane.columnIndex="1" />
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1">
+                           <children>
+                              <RadioButton fx:id="todas" mnemonicParsing="false" onAction="#verTodas" text="Ver todas">
+                                 <VBox.margin>
+                                    <Insets left="19.0" />
+                                 </VBox.margin>
+                              </RadioButton>
+                              <RadioButton fx:id="p1" mnemonicParsing="false" onAction="#pis1" text="Pista 1">
+                                 <VBox.margin>
+                                    <Insets top="10.0" />
+                                 </VBox.margin>
+                              </RadioButton>
+                              <RadioButton fx:id="p2" mnemonicParsing="false" onAction="#pis2" text="Pista 2">
+                                 <VBox.margin>
+                                    <Insets top="10.0" />
+                                 </VBox.margin>
+                              </RadioButton>
+                              <RadioButton fx:id="p3" mnemonicParsing="false" onAction="#pis3" text="Pista 3">
+                                 <VBox.margin>
+                                    <Insets top="10.0" />
+                                 </VBox.margin>
+                              </RadioButton>
+                              <RadioButton fx:id="p4" mnemonicParsing="false" onAction="#pis4" text="Pista 4">
+                                 <VBox.margin>
+                                    <Insets top="10.0" />
+                                 </VBox.margin>
+                              </RadioButton>
+                           </children>
+                        </VBox>
+                     </children>
+                  </GridPane>
+               </left>
+               <center>
+                  <ListView fx:id="listViewReservas" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+               </center>
+               <bottom>
+                  <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+               </bottom>
+               <right>
+                  <VBox prefHeight="332.0" prefWidth="212.0" BorderPane.alignment="CENTER" />
+               </right>
+            </BorderPane>
          </children>
       </HBox>
-      <MenuBar layoutX="-1.0" layoutY="104.0" prefHeight="25.0" prefWidth="841.0" AnchorPane.leftAnchor="-1.0" AnchorPane.rightAnchor="1.0">
-         <menus>
-            <Menu mnemonicParsing="false" text="Inicio">
-               <items>
-                  <MenuItem fx:id="closeButton" mnemonicParsing="false" onAction="#volver" text="Volver a inicio" />
-                  <MenuItem fx:id="closeButton1" mnemonicParsing="false" onAction="#cierraApp" text="Salir" />
-               </items>
-            </Menu>
-            <Menu mnemonicParsing="false" text="Reservas">
-               <items>
-                  <MenuItem mnemonicParsing="false" text="Mis reservas" />
-                  <MenuItem mnemonicParsing="false" onAction="#reservar" text="Reservar" />
-               </items>
-            </Menu>
-            <Menu mnemonicParsing="false" text="Ayuda">
-               <items>
-                  <MenuItem mnemonicParsing="false" text="About" />
-               </items>
-            </Menu>
-         </menus>
-      </MenuBar>
    </children>
-</AnchorPane>
+</VBox>

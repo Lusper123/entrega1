@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" fx:id="fxPistas" prefHeight="541.0" prefWidth="840.0" style="-fx-background-color: #b8e6f4;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="entrega.pkg1.ReservarSinLoginController">
+   <children>
+      <HBox layoutX="-100.0" layoutY="-36.0" prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <GridPane layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="676.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+         </rowConstraints>
+         <children>
+            <ImageView fitHeight="100.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="LEFT" GridPane.hgrow="ALWAYS" GridPane.valignment="TOP" GridPane.vgrow="ALWAYS">
+               <image>
+                  <Image url="@../imag/tennis%20(1).png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="100.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.hgrow="ALWAYS" GridPane.valignment="TOP" GridPane.vgrow="ALWAYS">
+               <image>
+                  <Image url="@../imag/tennis.png" />
+               </image>
+            </ImageView>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Club de padel FX" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+               <font>
+                  <Font name="Cooper Black" size="39.0" />
+               </font>
+            </Text>
+         </children>
+      </GridPane>
+      <Label fx:id="status" layoutX="376.0" layoutY="150.0" />
+      <BorderPane layoutX="227.0" layoutY="138.0" prefHeight="403.0" prefWidth="840.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="120.0">
+         <left>
+            <GridPane prefHeight="385.0" prefWidth="231.0" BorderPane.alignment="CENTER">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="190.0" minWidth="10.0" prefWidth="129.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="107.0" minWidth="10.0" prefWidth="102.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints maxHeight="175.0" minHeight="10.0" prefHeight="51.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="317.0" minHeight="10.0" prefHeight="312.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <DatePicker fx:id="datePicker" onAction="#handleFecha" prefHeight="25.0" prefWidth="147.0" GridPane.halignment="RIGHT" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+                     <GridPane.margin>
+                        <Insets bottom="10.0" top="10.0" />
+                     </GridPane.margin>
+                  </DatePicker>
+                  <Button mnemonicParsing="false" onAction="#reiniciarDate" prefHeight="35.0" prefWidth="97.0" style="-fx-background-color: #c9831d;" stylesheets="@../cssClass/botones.css" text="Resetear" GridPane.columnIndex="1" GridPane.vgrow="ALWAYS">
+                     <GridPane.margin>
+                        <Insets bottom="10.0" top="10.0" />
+                     </GridPane.margin>
+                  </Button>
+                  <VBox prefHeight="317.0" prefWidth="126.0" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS">
+                     <children>
+                        <RadioButton fx:id="todas" mnemonicParsing="false" onAction="#todasPistas" text="Ver todas" VBox.vgrow="ALWAYS">
+                           <padding>
+                              <Insets left="50.0" top="10.0" />
+                           </padding>
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </RadioButton>
+                        <RadioButton fx:id="p1" mnemonicParsing="false" onAction="#pis1" text="Pista 1" VBox.vgrow="ALWAYS">
+                           <padding>
+                              <Insets left="50.0" top="10.0" />
+                           </padding>
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </RadioButton>
+                        <RadioButton fx:id="p2" mnemonicParsing="false" onAction="#pis2" text="Pista 2" VBox.vgrow="ALWAYS">
+                           <padding>
+                              <Insets left="50.0" top="10.0" />
+                           </padding>
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </RadioButton>
+                        <RadioButton fx:id="p3" mnemonicParsing="false" onAction="#pis3" text="Pista 3" VBox.vgrow="ALWAYS">
+                           <padding>
+                              <Insets left="50.0" top="10.0" />
+                           </padding>
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </RadioButton>
+                        <RadioButton fx:id="p4" mnemonicParsing="false" onAction="#pis4" text="Pista 4" VBox.vgrow="ALWAYS">
+                           <padding>
+                              <Insets left="50.0" top="10.0" />
+                           </padding>
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </RadioButton>
+                     </children>
+                  </VBox>
+               </children>
+            </GridPane>
+         </left>
+         <center>
+            <ListView fx:id="listViewReservas" prefHeight="355.0" prefWidth="497.0" BorderPane.alignment="CENTER">
+               <BorderPane.margin>
+                  <Insets bottom="50.0" left="20.0" right="30.0" top="10.0" />
+               </BorderPane.margin>
+            </ListView>
+         </center>
+         <right>
+            <Button fx:id="volverInicio" mnemonicParsing="false" onAction="#volver" style="-fx-background-color: #e32a1d;" stylesheets="@../cssClass/botones.css" text="Volver" BorderPane.alignment="CENTER">
+               <BorderPane.margin>
+                  <Insets right="40.0" />
+               </BorderPane.margin>
+            </Button>
+         </right>
+         <top>
+            <Text fx:id="prueba" strokeType="OUTSIDE" strokeWidth="0.0" BorderPane.alignment="CENTER">
+               <BorderPane.margin>
+                  <Insets top="20.0" />
+               </BorderPane.margin>
+            </Text>
+         </top>
+      </BorderPane>
+   </children>
+</AnchorPane>

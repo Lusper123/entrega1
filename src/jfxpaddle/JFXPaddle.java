@@ -1,9 +1,6 @@
 package jfxpaddle;
 import entrega.pkg1.*;
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 /**
@@ -14,10 +11,11 @@ public class JFXPaddle extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Display.setStage(stage);
+        Display.setStage(stage); 
+        Display.setMinWH(550, 550);
         Display.showWindow(getClass(), "InicioApp.fxml");
-        Display.setTitle("Club");
-        Display.getStage().setResizable(false);
+       
+      
     }
 
     /**
@@ -25,6 +23,7 @@ public class JFXPaddle extends Application {
      */
     public static void main(String[] args) {
         launch(args);
+        
     }
     
 }

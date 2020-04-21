@@ -4,20 +4,15 @@
  * and open the template in the editor.
  */
 package jfxpaddle;
-import entrega.pkg1.*;
+
+import entrega.pkg1.Display;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 /**
@@ -29,59 +24,53 @@ public class InicioAppController implements Initializable {
 
     @FXML
     private Button fxInicio;
+    private Button fxAccede;
     @FXML
     private Button fxRegistro;
+    @FXML
+    private Button fxVerReservas;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+         Display.setMinWH(550, 550);
+        
         // TODO
     }    
 
     @FXML
-    private void accederPerfil(ActionEvent event) {
+    private void accederPerfil(ActionEvent event) throws IOException {
         
-        try{
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Autenticarse.fxml"));
-            Parent root1 = fxmlLoader.load();
-            AutenticarseController controlador = fxmlLoader.getController();
-            Scene scene = new Scene(root1);
-            Stage stage = new Stage();
-            stage.initModality(Modality.APPLICATION_MODAL);
-            stage.setResizable(false);
-            stage.setTitle("Mi perfil");
-            stage.setScene(scene);
-            stage.show();
-            
-            stage.setOnCloseRequest(e -> controlador.closeWindows());
-            Stage mystage = (Stage) this.fxInicio.getScene().getWindow();  
-            mystage.close();
-        }catch(IOException e){
-             //Logger.getLogger(AutenticarseController.class.getName()).log(Level.SEVERE,null,e);
-        }
+   
+       Display.setView(getClass(), "/jfxpaddle/Autenticarse.fxml");
+        
+        //cerrar la ventana de atrás
+        Stage mystage = (Stage) this.fxInicio.getScene().getWindow();
+        mystage.close();
+       
     }
 
-    @FXML
-    private void crearCuenta(ActionEvent event) {
-        
-          try{
-             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("nuevoPerfil.fxml"));
-            Parent root1 = fxmlLoader.load();
-            NuevoPerfilController controlador = fxmlLoader.getController();
-            Scene scene = new Scene(root1);
-            Stage stage = new Stage();
-            stage.initModality(Modality.APPLICATION_MODAL);
-            stage.setResizable(false);
-            stage.setTitle("Mi perfil");
-            stage.setScene(scene);
-            stage.show();
-            
-           
-        }catch(IOException e){
-            // Logger.getLogger(AutenticarseController.class.getName()).log(Level.SEVERE,null,e);
-        }
-    }
     
+
+    @FXML
+    private void crearCuenta(ActionEvent event) throws IOException {
+        
+        
+       Display.setView(getClass(), "/jfxpaddle/nuevoPerfil.fxml");
+        //cerrar la ventana de atrás
+        Stage mystage = (Stage) this.fxRegistro.getScene().getWindow();
+        mystage.close();
+        
+    
+    }
+    @FXML
+    private void accederReserva(ActionEvent event) throws IOException  {
+           Display.setView(getClass(), "/vista/ReservarSinLogin.fxml");
+           Stage mystage = (Stage) this.fxVerReservas.getScene().getWindow();  
+         mystage.close();
+    }
+
+
 }

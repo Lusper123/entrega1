@@ -2,77 +2,87 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="293.0" prefWidth="559.0" style="-fx-background-color: #2C3C53;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="jfxpaddle.AutenticarseController">
-   <left>
-      <VBox prefHeight="252.0" prefWidth="78.0" BorderPane.alignment="CENTER" />
-   </left>
-   <right>
-      <VBox prefHeight="239.0" prefWidth="83.0" BorderPane.alignment="CENTER" />
-   </right>
-   <center>
-      <HBox prefHeight="257.0" prefWidth="422.0" BorderPane.alignment="CENTER">
+
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="554.0" prefWidth="749.0" style="-fx-background-color: #3b4875;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="jfxpaddle.AutenticarseController">
+   <children>
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
          <children>
-            <VBox prefHeight="279.0" prefWidth="221.0">
+            <ImageView fitHeight="125.0" fitWidth="126.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../imag/team.png" />
+               </image>
+            </ImageView>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                <children>
-                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Login:">
+                  <ImageView fitHeight="55.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../imag/membership.png" />
+                     </image>
                      <VBox.margin>
-                        <Insets bottom="20.0" left="20.0" right="20.0" />
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </VBox.margin>
-                     <font>
-                        <Font size="23.0" />
-                     </font>
-                  </Text>
-                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Password:" wrappingWidth="137.447265625">
+                  </ImageView>
+                  <ImageView fitHeight="51.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../imag/unlock.png" />
+                     </image>
                      <VBox.margin>
-                        <Insets bottom="20.0" left="20.0" right="20.0" />
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </VBox.margin>
-                     <font>
-                        <Font size="22.0" />
-                     </font>
-                  </Text>
+                  </ImageView>
                </children>
             </VBox>
-            <VBox prefHeight="279.0" prefWidth="220.0">
+            <VBox alignment="CENTER" prefHeight="136.0" prefWidth="127.0">
                <children>
-                  <TextField fx:id="fxLog" onAction="#compruebaLog">
+                  <TextField fx:id="fxLog" promptText="NickName">
                      <VBox.margin>
-                        <Insets bottom="20.0" left="20.0" right="20.0" />
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </VBox.margin>
                   </TextField>
-                  <TextField fx:id="fxPass" onAction="#compruebaPass" translateY="10.0">
+                  <PasswordField fx:id="fxPassword" promptText="Password">
                      <VBox.margin>
-                        <Insets bottom="20.0" left="20.0" right="20.0" />
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </VBox.margin>
-                  </TextField>
+                  </PasswordField>
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" />
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <VBox alignment="CENTER" prefHeight="171.0" prefWidth="211.0">
+               <children>
+                  <CheckBox fx:id="checkBox" mnemonicParsing="false" onAction="#muestraContraseña" prefHeight="21.0" prefWidth="170.0" text="Mostrar contraseña" textFill="WHITE">
+                     <VBox.margin>
+                        <Insets bottom="10.0" top="10.0" />
+                     </VBox.margin>
+                  </CheckBox>
+                  <Button fx:id="fxEntry" mnemonicParsing="false" onAction="#entraYa" prefHeight="35.0" prefWidth="89.0" style="-fx-background-color: #91f082;" stylesheets="@../cssClass/botones.css" text="Entrar">
+                     <VBox.margin>
+                        <Insets bottom="10.0" top="20.0" />
+                     </VBox.margin>
+                  </Button>
+                  <Button fx:id="fxCancela" mnemonicParsing="false" onAction="#cierraVentana" style="-fx-background-color: #e32a1d;" stylesheets="@../cssClass/botones.css" text="Cancelar">
+                     <VBox.margin>
+                        <Insets bottom="10.0" top="20.0" />
+                     </VBox.margin>
+                  </Button>
                </children>
             </VBox>
          </children>
       </HBox>
-   </center>
-   <top>
-      <HBox prefHeight="60.0" prefWidth="600.0" BorderPane.alignment="CENTER" />
-   </top>
-   <bottom>
-      <HBox prefHeight="61.0" prefWidth="600.0" BorderPane.alignment="CENTER">
-         <children>
-            <Button fx:id="fxCancela" mnemonicParsing="false" onAction="#cierraVentana" style="-fx-background-color: c12c17; -fx-font-weight: bold;" text="Cancelar" textFill="WHITE" translateX="270.0">
-               <HBox.margin>
-                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-               </HBox.margin>
-            </Button>
-            <Button fx:id="fxEntry" mnemonicParsing="false" onAction="#entraYa" style="-fx-background-color: #79e249; -fx-font-weight: bold;" text="Entrar" textFill="WHITE" translateX="280.0">
-               <HBox.margin>
-                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-               </HBox.margin>
-            </Button>
-         </children>
-      </HBox>
-   </bottom>
-</BorderPane>
+   </children>
+</VBox>

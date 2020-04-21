@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane focusTraversable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="745.0" prefWidth="1076.0" style="-fx-background-color: #b8e6f4;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vista.MyBookListController">
+   <children>
+      <MenuBar layoutY="101.0" prefHeight="25.0" prefWidth="821.0" stylesheets="@../cssClass/menuitem.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="Inicio">
+            <items>
+                  <MenuItem fx:id="textUser" mnemonicParsing="false" onAction="#miUser" text="Mi perfil:">
+                     <graphic>
+                        <ImageView fx:id="imageUser" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+                     </graphic>
+                  </MenuItem>
+                  <MenuItem mnemonicParsing="false" onAction="#normas" text="Normativa" />
+                  <MenuItem fx:id="closeButton" mnemonicParsing="false" onAction="#volver" text="Volver al inicio" />
+              <MenuItem mnemonicParsing="false" onAction="#cerrarSesion" text="Cerrar sesion" />
+                  <MenuItem mnemonicParsing="false" onAction="#salir" text="Salir" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Reservas">
+            <items>
+                  <MenuItem mnemonicParsing="false" onAction="#pistas" text="Pistas" />
+              <MenuItem mnemonicParsing="false" text="Mis reservas" />
+                  <MenuItem mnemonicParsing="false" onAction="#reservar" text="Reservar" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Ayuda">
+            <items>
+              <MenuItem mnemonicParsing="false" text="About" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+      <HBox prefHeight="100.0" prefWidth="626.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <GridPane prefHeight="90.0" prefWidth="1076.0" HBox.hgrow="ALWAYS">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+               </rowConstraints>
+               <children>
+                  <ImageView fitHeight="100.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="LEFT" GridPane.hgrow="ALWAYS" GridPane.valignment="TOP" GridPane.vgrow="ALWAYS">
+                     <image>
+                        <Image url="@../imag/tennis%20(1).png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="100.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.hgrow="ALWAYS" GridPane.valignment="TOP" GridPane.vgrow="ALWAYS">
+                     <image>
+                        <Image url="@../imag/tennis.png" />
+                     </image>
+                  </ImageView>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Club de padel FX" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+                     <font>
+                        <Font name="Cooper Black" size="39.0" />
+                     </font>
+                  </Text>
+               </children>
+            </GridPane>
+         </children>
+      </HBox>
+      <BorderPane layoutX="8.0" layoutY="120.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="419.0" prefWidth="668.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="126.0">
+         <left>
+            <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER" />
+         </left>
+         <right>
+            <VBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="462.0" prefWidth="88.0" BorderPane.alignment="CENTER" />
+         </right>
+         <top>
+            <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="158.0" prefWidth="1076.0">
+               <children>
+                  <GridPane prefHeight="158.0" prefWidth="868.0" HBox.hgrow="ALWAYS">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="376.0" minWidth="10.0" prefWidth="352.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints maxHeight="66.0" minHeight="10.0" prefHeight="47.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="60.0" minHeight="10.0" prefHeight="49.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="62.0" minHeight="10.0" prefHeight="51.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <RadioButton fx:id="pendiendtes" mnemonicParsing="false" onAction="#verPendientes" prefHeight="21.0" prefWidth="224.0" text="Reservas pendientes" translateX="-100.0" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS">
+                           <GridPane.margin>
+                              <Insets left="200.0" />
+                           </GridPane.margin>
+                        </RadioButton>
+                        <RadioButton fx:id="pasadas" mnemonicParsing="false" onAction="#verPasadas" text="Ver reservas pasadas" translateX="-100.0" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.vgrow="ALWAYS">
+                           <GridPane.margin>
+                              <Insets left="200.0" />
+                           </GridPane.margin>
+                        </RadioButton>
+                        <RadioButton fx:id="todo" mnemonicParsing="false" onAction="#verTodo" text="Ver todo" translateX="-100.0" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS">
+                           <GridPane.margin>
+                              <Insets left="200.0" />
+                           </GridPane.margin>
+                        </RadioButton>
+                     </children>
+                  </GridPane>
+               </children>
+            </HBox>
+         </top>
+         <bottom>
+            <HBox prefHeight="77.0" prefWidth="690.0" BorderPane.alignment="CENTER">
+               <children>
+                  <GridPane prefHeight="77.0" prefWidth="716.0" HBox.hgrow="ALWAYS">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <HBox.margin>
+                        <Insets left="80.0" right="80.0" />
+                     </HBox.margin>
+                     <children>
+                        <Button fx:id="cancel" mnemonicParsing="false" onAction="#cancelarReserva" style="-fx-background-color: #e32a1d;" stylesheets="@../cssClass/botones.css" text="Cancelar reserva" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+                           <GridPane.margin>
+                              <Insets left="10.0" />
+                           </GridPane.margin>
+                        </Button>
+                        <Button fx:id="fxCambia" mnemonicParsing="false" onAction="#cambiarReserva" style="-fx-background-color: #af9df1;" stylesheets="@../cssClass/botones.css" text="Cambiar reserva" GridPane.halignment="RIGHT" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+                           <GridPane.margin>
+                              <Insets left="10.0" />
+                           </GridPane.margin>
+                        </Button>
+                     </children>
+                  </GridPane>
+               </children>
+            </HBox>
+         </bottom>
+         <center>
+            <ListView fx:id="listmyBooks" prefHeight="381.0" prefWidth="888.0" BorderPane.alignment="CENTER" />
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>

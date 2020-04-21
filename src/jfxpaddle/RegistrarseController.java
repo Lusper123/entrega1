@@ -6,6 +6,7 @@
 package jfxpaddle;
 
 import DBAcess.ClubDBAccess;
+import entrega.pkg1.Display;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -30,9 +31,11 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.InputMethodEvent;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javax.imageio.ImageIO;
 import model.Member;
 
@@ -42,6 +45,8 @@ import model.Member;
  * @author Monica
  */
 public class RegistrarseController implements Initializable {
+    
+    
      protected Stage stage;
     ClubDBAccess clubDBAcess;
     private Stage primaryStage;
@@ -49,7 +54,6 @@ public class RegistrarseController implements Initializable {
     private FileChooser fileChooser;
     private File filePath;
     private Image image;
-
     @FXML
     private Button fxCancel;
     @FXML
@@ -76,15 +80,26 @@ public class RegistrarseController implements Initializable {
     private ImageView fxImagen;
     @FXML
     private TextField fxCode;
+    @FXML
+    private Text text_errorContrsena;
+    @FXML
+    private Text text_usuari_existent;
 
+    
+    private boolean isNom, isCognom, isUsuari, isTelefon, isContrasena, isConfirmacio,
+            isTargeta, isSvc;
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-         // TODO
+         Display.setMinWH(550, 550);
+        // TODO
         clubDBAcess = ClubDBAccess.getSingletonClubDBAccess();
         stage = new Stage();
+        
+        isNom = isCognom = isUsuari = isTelefon = isContrasena = isConfirmacio = false;
+        isTargeta = isSvc = true;
         final BooleanBinding missingData
                 = fxNameMember.textProperty().isEmpty()
                 .or(fxApellidoMember.textProperty().isEmpty())
@@ -92,16 +107,65 @@ public class RegistrarseController implements Initializable {
                         .or(fxPass.textProperty().isEmpty()));
         fxSave.disableProperty().bind(missingData);
 
-        fxLog.textProperty().addListener((observable, oldValue, newValue) -> {
-            if (!newValue.equals("") && newValue.charAt(newValue.length() - 1) == ' ') {
-                String s = newValue.substring(0, newValue.length() - 1);
-                fxLog.textProperty().setValue(s);
-            }
-        });
+         fxLog.textProperty().addListener((observable,oldValue,newValue)->{
+         fxLog.setText(fxLog.getText().replace(" ", "")); });
+           
+            fxPass.textProperty().addListener((observable,oldValue,newValue)->{
+         fxPass.setText(fxPass.getText().replace(" ", "")); });
+       
+        // TODO
         // TODO
     }    
 
-   public static RegistrarseController init(Modality modality, Stage owner) throws IOException {
+    @FXML
+    private void pulsaSal(ActionEvent event) {
+         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+         alert.setTitle("Cambio de reserva");
+        alert.setHeaderText("Saliendo");
+        alert.setContentText("¿Seguro que quieres salir ?");
+        Optional<ButtonType> result = alert.showAndWait();
+        
+        if (result.isPresent() && result.get() == ButtonType.OK) {
+            Node minodo = (Node) event.getSource();
+            minodo.getScene().getWindow().hide();
+            System.out.println("Cerrando ventana");
+        }
+    }
+
+    @FXML
+    private void entraYa(ActionEvent event) {
+
+          Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        if (member != null) {
+            member.setName(fxNameMember.getText());
+            member.setSurname(fxApellidoMember.getText());
+            member.setTelephone(fxTel.getText());
+            member.setLogin(fxLog.getText());
+            member.setPassword(fxPass.getText());
+            member.setSvc(fxCode.getText());
+            member.setCreditCard(fxTarjC.getText());
+            
+        } else {
+            member = new Member(fxNameMember.getText(), fxApellidoMember.getText(), fxTel.getText(), fxLog.getText(), fxPass.getText(), "", "", null);
+        }
+        
+       
+        alert.setHeaderText(null);
+        alert.setTitle("Gracias por unirte");
+        alert.setContentText("Bienvenido " + fxNameMember.getText() + ", gracias por unirte");
+        alert.initStyle(StageStyle.UTILITY);
+        alert.showAndWait();
+        clubDBAcess.saveDB();
+        stage.close();
+    }
+
+    private void handleLoginChange(InputMethodEvent event) {
+         System.out.println(event);
+    }
+    
+    
+    
+     public static RegistrarseController init(Modality modality, Stage owner) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(RegistrarseController.class.getResource("Registrarse.fxml"));
         Parent parent = fxmlLoader.load();
         RegistrarseController controller = fxmlLoader.getController();
@@ -115,7 +179,7 @@ public class RegistrarseController implements Initializable {
         this.member = member;
         fxNameMember.setText(member.getName());
         fxApellidoMember.setText(member.getSurname());
-        fxTel.setText(member.getTelephon());
+        fxTel.setText(member.getTelephone());
         fxLog.setText(member.getLogin());
         fxPass.setText(member.getPassword());
 
@@ -140,36 +204,6 @@ public class RegistrarseController implements Initializable {
         stage.showAndWait();
         return member;
     }
-
-    @FXML
-    private void pulsaSal(ActionEvent event) {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Datos personales del cliente");
-        alert.setHeaderText("Saliendo de datos personales del cliente");
-        alert.setContentText("¿Seguro que quieres continuar?");
-        Optional<ButtonType> result = alert.showAndWait();
-        if (result.isPresent() && result.get() == ButtonType.OK) {
-            Node minodo = (Node) event.getSource();
-            minodo.getScene().getWindow().hide();
-            System.out.println("Cerrando ventana");
-        }
-    }
-
-    @FXML
-    private void entraYa(ActionEvent event) {
-        if (member != null) {
-            member.setName(fxNameMember.getText());
-            member.setSurname(fxApellidoMember.getText());
-            member.setTelephon(fxTel.getText());
-            member.setLogin(fxLog.getText());
-            member.setPassword(fxPass.getText());
-        } else {
-            member = new Member(fxNameMember.getText(), fxApellidoMember.getText(), fxTel.getText(), fxLog.getText(), fxPass.getText(), "", "", null);
-        }
-        stage.close();
-    }
-
-
     @FXML
     private void TextFieldTelf(KeyEvent event) {
         char key = event.getCharacter().charAt(0);
@@ -177,30 +211,42 @@ public class RegistrarseController implements Initializable {
             event.consume();
 
         }
+        //PREGUNTAR PER LLARGARIA DE TELEFON
+        isTelefon = this.fxTel.getText().length() > 7; //FER PRINT DE L'ERROR
+        //System.out.println(isTelefon);
     }
+
 
     @FXML
     private void TextFieldPass(KeyEvent event) {
-        int limite = 6;
-        if (limite <= fxPass.getText().length()) {
-            event.consume();
+        isContrasena = this.fxPass.getText().length() > 5;
+        if (isContrasena) {
+           this.text_errorContrsena.setStyle("-fx-fill:#FAFAFA;-fx-opacity:0.85");
+        } else {
+            this.text_errorContrsena.setStyle("-fx-fill:#FF5722;-fx-opacity:1");
         }
     }
 
     @FXML
     private void TextFieldTarjeta(KeyEvent event) {
-        char key = event.getCharacter().charAt(0);
-        if (!Character.isDigit(key) || fxTarjC.getText().length() >= 16) {
+         String lastTyped = event.getCharacter();
+        int numOf = this.fxTarjC.getText().length();
+        if (!Character.isDigit(lastTyped.charAt(0))
+                || numOf > 15) {
             event.consume();
-
         }
     }
 
-   @FXML
+    @FXML
     private void addFoto(ActionEvent event) {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         fileChooser = new FileChooser();
         fileChooser.setTitle("Abrir imagen");
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("Tots els tipus", "*.jpg", "*.png"),
+                new FileChooser.ExtensionFilter("JPG", "*.jpg"),
+                new FileChooser.ExtensionFilter("PNG", "*png")
+        );
         String userDirectoryString = System.getProperty("user.home");
         File userDirectory = new File(userDirectoryString);
 
@@ -222,7 +268,6 @@ public class RegistrarseController implements Initializable {
         }
     }
 
-
     @FXML
     private void eliminarFoto(ActionEvent event) {
         Image image = new Image("/imag/default.png", true);
@@ -232,16 +277,12 @@ public class RegistrarseController implements Initializable {
 
     @FXML
     private void TextFieldCode(KeyEvent event) {
-        char key = event.getCharacter().charAt(0);
-         int limite = 0;
-
-        if (!Character.isDigit(key) || fxTarjC.getText().length() == limite) {
+         String lastTyped = event.getCharacter();
+        int numOf = this.fxCode.getText().length();
+        if (!Character.isDigit(lastTyped.charAt(0))
+                || numOf > 2) {
             event.consume();
-
         }
     }
-
-    public void handleLoginChange(InputMethodEvent inputMethodEvent) {
-        System.out.println(inputMethodEvent);
-    }
+    
 }
